@@ -76,7 +76,7 @@ const TaskList = ({ loading, error }) => {
               <h1
                 className={
                   !list.isDone
-                    ? "text-black break-all px-2"
+                    ? "text-red break-all px-2"
                     : "text-gray-300 line-through break-all px-2"
                 }
               >
