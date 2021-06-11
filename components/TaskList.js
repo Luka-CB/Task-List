@@ -75,7 +75,9 @@ const TaskList = ({ loading, error }) => {
             >
               <h1
                 className={
-                  !list.isDone ? "text-black" : "text-gray-300 line-through"
+                  !list.isDone
+                    ? "text-black break-words"
+                    : "text-gray-300 line-through break-words"
                 }
               >
                 {index + 1}. {list.title}
