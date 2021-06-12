@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "vercel-build": "prisma migrate deploy",
-    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.1",
