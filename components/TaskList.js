@@ -76,11 +76,11 @@ const TaskList = ({ loading, error }) => {
               <h1
                 className={
                   !list.isDone
-                    ? "text-red break-all px-2"
+                    ? "text-black break-all px-2"
                     : "text-gray-300 line-through break-all px-2"
                 }
               >
-                {index + 1}. {list.title}
+                {index + 1}. some Text - {list.title}
               </h1>
               <div className='flex w-1/4 justify-between items-center pr-2'>
                 <div className='flex w-1/2 justify-between items-center'>
