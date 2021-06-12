@@ -80,7 +80,7 @@ const TaskList = ({ loading, error }) => {
                     : "text-gray-300 line-through break-all px-2"
                 }
               >
-                {index + 1}. some Text - {list.title}
+                {index + 1}. {list.title}
               </h1>
               <div className='flex w-1/4 justify-between items-center pr-2'>
                 <div className='flex w-1/2 justify-between items-center'>
