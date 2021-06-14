@@ -6,12 +6,16 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [error, setError] = useState(null);
+  const [updError, setUpdError] = useState(null);
+  const [delError, setDelError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
+  const [updSuccess, setUpdSuccess] = useState(null);
+  const [delSuccess, setDelSuccess] = useState(null);
 
   const router = useRouter();
 
-  useEffect(() => userLoggedIn(), []);
+  useEffect(() => userLoggedIn(), [updSuccess]);
 
   const register = async (user) => {
     setLoading(true);
@@ -88,6 +92,45 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateAccount = async (username, email, password) => {
+    setLoading(true);
+
+    const res = await fetch("/api/auth/update", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setLoading(false);
+      setUpdError(data);
+    } else {
+      setLoading(false);
+      setUpdSuccess(data);
+    }
+  };
+
+  const deleteAccount = async () => {
+    setLoading(true);
+
+    const res = await fetch("/api/auth/deleteaccount", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setLoading(false);
+      setDelError(data);
+    } else {
+      setLoading(false);
+      setDelSuccess(data);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -99,6 +142,12 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         userLoggedIn,
+        updateAccount,
+        updError,
+        updSuccess,
+        deleteAccount,
+        delError,
+        delSuccess,
       }}
     >
       {children}

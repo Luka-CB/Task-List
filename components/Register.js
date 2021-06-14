@@ -77,7 +77,7 @@ const Register = ({ hideRegister, showLogin, close }) => {
         <div className='w-4/5 flex flex-col mt-5'>
           <label className='text-white tracking-widest font-bold'>Email</label>
           <input
-            type='text'
+            type='email'
             id='email'
             name='email'
             className='py-2 pl-2 border-t-4 border-l-2 border-gray-400 rounded-2xl outline-none'
@@ -92,7 +92,7 @@ const Register = ({ hideRegister, showLogin, close }) => {
             password
           </label>
           <input
-            type='text'
+            type='password'
             id='password'
             name='password'
             className='py-2 pl-2 border-t-4 border-l-2 border-gray-400 rounded-2xl outline-none'

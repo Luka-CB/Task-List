@@ -102,3 +102,31 @@ export const ClearPopup = ({ show, hide }) => {
     </>
   );
 };
+
+export const DeleteAccountPopup = ({ show, hide, deleteHandler }) => {
+  return (
+    <>
+      {show && (
+        <div className='bg-white absolute w-4/5 h-1/3 p-3 flex flex-col items-center justify-around border-t-4 border-l-2 border-gray-500 rounded-2xl'>
+          <div className='text-lg'>
+            <h1>Are you sure? This will also delete your task list</h1>
+          </div>
+          <div className='w-4/5 flex justify-around'>
+            <button
+              onClick={hide}
+              className='border-2 border-gray-600 px-8 rounded-2xl font-bold hover:text-green-500 transition duration-300'
+            >
+              Cancel
+            </button>
+            <button
+              onClick={deleteHandler}
+              className='border-2 border-red-600 px-8 rounded-2xl font-bold hover:text-red-500 transition duration-300'
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};

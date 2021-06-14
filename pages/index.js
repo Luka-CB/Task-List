@@ -3,14 +3,15 @@ import TaskList from "@/components/TaskList";
 import { TaskContext } from "@/context/taskContext";
 import { AuthContext } from "@/context/userContext";
 import Login from "@/components/Login";
+import ManageAccount from "@/components/ManageAccount";
 
 export default function Home() {
   const [title, setTitle] = useState("");
 
   const [showLogin, setShowLogin] = useState(false);
+  const [showUpdAccount, setShowUpdAccount] = useState(false);
 
-  const { loading, logout, user, userLoggedIn, success } =
-    useContext(AuthContext);
+  const { logout, user, userLoggedIn, success } = useContext(AuthContext);
   const {
     createTask,
     loading: createTaskLoading,
@@ -37,23 +38,36 @@ export default function Home() {
     createTask(title);
   };
 
+  const closeHandler = () => {
+    setShowLogin(false);
+    setShowUpdAccount(false);
+  };
+
   return (
     <div
       className='mx-auto px-4 fluid bg-gray-200 flex items-center flex-col min-h-screen pt-20'
-      onClick={() => setShowLogin(false)}
+      onClick={closeHandler}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className='flex flex-col items-center w-1/3 bg-white h-40 min-h-0 shadow-md rounded-3xl pt-1 relative'
+        className='flex flex-col items-center w-1/3 bg-white py-10 shadow-md rounded-3xl pt-1 relative'
       >
         <div>
           {user ? (
-            <button
-              className='bg-green-500 absolute right-0 mr-3 mt-2 p-1 rounded-md shadow-md text-white hover:bg-gray-300 hover:text-green-800 transition duration-300'
-              onClick={() => logout()}
-            >
-              Logout
-            </button>
+            <div className='absolute right-0'>
+              <button
+                className='bg-green-500 mr-3 mt-2 p-1 rounded-md shadow-md text-white hover:bg-gray-300 hover:text-green-800 transition duration-300'
+                onClick={() => logout()}
+              >
+                Logout
+              </button>
+              <button
+                onClick={() => setShowUpdAccount(true)}
+                className='bg-green-500 mr-3 mt-2 p-1 rounded-md shadow-md text-white hover:bg-gray-300 hover:text-green-800 transition duration-300'
+              >
+                Manage Account
+              </button>
+            </div>
           ) : (
             <p
               onClick={() => setShowLogin(true)}
@@ -64,8 +78,9 @@ export default function Home() {
           )}
         </div>
         <Login show={showLogin} close={() => setShowLogin(false)} />
+        <ManageAccount show={showUpdAccount} hide={() => setShowUpdAccount()} />
         <div className=' w-full h-full'>
-          <div className='py-3 pl-3 text-xl'>
+          <div className='py-3 pl-3 text-xl w-1/2 break-words'>
             <h1>{user ? `${user.username}'s Task List` : "The Task List"}</h1>
           </div>
           <hr />

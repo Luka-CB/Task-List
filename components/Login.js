@@ -72,7 +72,7 @@ const Login = ({ show, close }) => {
                     Email
                   </label>
                   <input
-                    type='text'
+                    type='email'
                     id='email'
                     name='email'
                     placeholder='Enter Email'
@@ -88,7 +88,7 @@ const Login = ({ show, close }) => {
                     password
                   </label>
                   <input
-                    type='text'
+                    type='password'
                     id='password'
                     name='password'
                     placeholder='Enter Password'
