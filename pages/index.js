@@ -92,6 +92,7 @@ export default function Home() {
                   type='text'
                   placeholder='Enter New Task'
                   value={title}
+                  required
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <button
